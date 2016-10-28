@@ -1,0 +1,17 @@
+<!doctype html>
+{% load staticfiles %}
+<html>
+<head>
+<title>部落格</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+</head>
+<body>
+<h1>Django 說--Hello world!</h1>
+<p>{{ like }}</p>
+<p>現在時間:{{ now|date:"Y/m/d H:i:s"}}</p>
+<p><a href="{% url 'main:about' %}">關於</a></p>
+<p><a href="{% url 'article:article' %}">部落格</a></p>
+<p><a href="{% url 'main:contact' %}">聯絡我們</a></p>
+</body>
+</html>
