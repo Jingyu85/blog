@@ -7,3 +7,12 @@ body {
   background: url(../img/background.jpg) no-repeat center center fixed;
   background-size: cover;
 }
+
+/* Menu */
+ul#menu {
+  margin-bottom: 30px;
+  text-align: right;
+}
+ul#menu li {
+  display: inline-block;
+}
