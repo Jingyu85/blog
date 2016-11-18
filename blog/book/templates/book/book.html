@@ -2,9 +2,22 @@
 {% load staticfiles %}
 <html>
 <head>
-<title>書本</title>
+<title>部落格</title>
 <meta charset="utf-8">
+<link rel="stylesheet" href="{% static 'main/css/main.css' %}">
 </head>
 <body>
+{% include 'main/menu.html' %}
+<h2>書籍資料</h2>
+<br>
+{% for book in books %}
+	<p>書名:{{ book.title }}</p>
+	<p>作者姓名:{{ book.author }}</p>
+	<p>出版商:{{ book.publisher }}</p>
+	<p>出版日期:{{ book.publication|date:'Y-m-d' }}</p>
+	<p>印刷版次:{{ book.version }}</p>
+	<p>售價:{{ book.price }}</p>
+	<hr>
+{% endfor %}
 </body>
 </html>

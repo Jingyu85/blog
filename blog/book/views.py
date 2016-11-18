@@ -2,10 +2,11 @@ from django.shortcuts import render
 
 from article.models import Book
 
+
 def book(request):
     '''
-    Render the article page
+    Render the book page
     '''
-    books = book.objects.all()
+    books = Book.objects.all()
     context = {'books':books}
     return render(request, 'book/book.html', context)

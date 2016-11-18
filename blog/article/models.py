@@ -17,6 +17,7 @@ class Article(models.Model):
 class Comment(models.Model):
     article = models.ForeignKey(Article)
     content = models.CharField(max_length=128)
+    pubDateTime = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
         return self.article.title + '-' + str(self.id)
