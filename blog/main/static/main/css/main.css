@@ -26,3 +26,29 @@ ul#menu li {
   border: thin solid gray;
   background: linear-gradient(#f7f7f7, #dedede);
 }
+
+/* Table */
+.table {
+  argin: 0 auto;
+  width: 100%;
+  border-collapse: collapse;
+}
+.table th {	
+  font-weight: normal;
+  font-size: 1.1em;
+  padding: 10px 0 10px 10px;
+  text-align: left;
+  background: linear-gradient(#cccccc, #aaaaaa);
+  border-bottom: 1px solid black
+}
+.table td {
+  color: #222222;
+  background-color: #d0d0d0;
+  padding: 12px 0 12px 10px;
+}
+.table-striped tr:nth-child(even) td {
+  background-color: #eeeeee;
+}
+.table-hover tr:hover td {
+  background-color: #cccccc;
+}
