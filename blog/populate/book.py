@@ -13,13 +13,12 @@ def populate():
     authors = ['王小明','張小華','劉小美','張小志','陳小新','王小田','李小龍','江小瑜','林小泉','沈小琳']
     publishers = ['第一出版社','第二出版社','第三出版社','第四出版社','第五出版社','第六出版社','第七出版社','第八出版社','第九出版社','第十出版社']
     Book.objects.all().delete()
-    for title in titles:
+
+    for i in range(len(titles)):
         book = Book()
-        book.title = title
-        for author in authors:
-            book.author = author
-        for publisher in publishers:
-            book.publisher = publisher
+        book.title = titles[i]
+        book.author=authors[i]
+        book.publisher=publishers[i]
         book.publication = datetime.datetime.today()
         book.version = 1
         book.price = 680

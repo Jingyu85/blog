@@ -16,3 +16,13 @@ ul#menu {
 ul#menu li {
   display: inline-block;
 }
+
+/* Button */
+.btn {
+  color: black;
+  font-size: 0.8em;
+  padding: 3px 7px;
+  text-decoration: none;
+  border: thin solid gray;
+  background: linear-gradient(#f7f7f7, #dedede);
+}

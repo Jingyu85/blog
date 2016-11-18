@@ -5,10 +5,30 @@
 <title>部落格</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+<link rel="stylesheet" href="{% static 'article/css/article.css' %}">
 </head>
 <body>
 {% include 'main/menu.html' %}
-<h1>部落格說--Hello world!</h1>
+<h2>歡迎來到我的部落格</h2>
+<br>
+<a class="btn" href="{% url 'article:articleCreate' %}">新增文章</a>
+<br>
+{% for items in itemsList %}
+  {% for item in items %}
+    {% if forloop.first %}
+      <h3>{{ item.title }}</h3>
+      <p>發表時間:{{ item.pubDateTime|date:'Y-m-d H:i' }}</p>
+      <div class=articleContent>{{ item.content|linebreaks|truncatewords_html:6 }}</div>
+      <p>讚:{{ item.likes }}</p>
+    {% else %}
+    <p>
+      <span class=comment>{{ item.content }}</span><br>
+      <span class=commentTime>{{ item.pubDateTime|date:'Y-m-d H:i' }}</span>
+    </p>
+    {% endif %}
+  {% endfor %}
+  <hr>
+{% endfor %}
 <br>
 </body>
 </html>
