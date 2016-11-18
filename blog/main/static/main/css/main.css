@@ -27,6 +27,14 @@ ul#menu li {
   background: linear-gradient(#f7f7f7, #dedede);
 }
 
+/* Messages */
+.success {
+   color: blue;
+}
+.error {
+   color: red;
+} 
+
 /* Table */
 .table {
   argin: 0 auto;
@@ -51,4 +59,9 @@ ul#menu li {
 }
 .table-hover tr:hover td {
   background-color: #cccccc;
+}
+
+/* Misc */
+.inline {
+  display: inline-block;
 }

@@ -51,6 +51,7 @@ def articleRead(request, articleId):
         'comments': Comment.objects.filter(article=articleToRead)
     }
     return render(request, 'article/articleRead.html', context)
+
 def articleUpdate(request, articleId):
     '''
     Update the article instance:
@@ -61,7 +62,7 @@ def articleUpdate(request, articleId):
     '''
     articleToUpdate = get_object_or_404(Article, id=articleId)
     template = 'article/articleCreateUpdate.html'
-    if request.method=='GET':
+    if request.method == 'GET':
         articleForm = ArticleForm(instance=articleToUpdate)
         return render(request, template, {'articleForm':articleForm, 'article':articleToUpdate})
     # POST
@@ -69,7 +70,9 @@ def articleUpdate(request, articleId):
     if not articleForm.is_valid():
         return render(request, template, {'articleForm':articleForm, 'article':articleToUpdate})
     articleForm.save()
-    return redirect('article:articleRead', articleId=articleToUpdate.id)
+    messages.success(request, '文章已修改')
+    return redirect('article:articleRead', articleId=articleId)
+
 def articleDelete(request, articleId):
     '''
     Delete the article instance:
@@ -81,7 +84,9 @@ def articleDelete(request, articleId):
     # POST
     articleToDelete = get_object_or_404(Article, id=articleId)
     articleToDelete.delete()
-    return redirect('article:article')  
+    messages.success(request, '文章已刪除')
+    return redirect('article:article') 
+ 
 def articleSearch(request):
     '''
     Search for articles:
@@ -92,6 +97,7 @@ def articleSearch(request):
     articles = Article.objects.filter(Q(title__icontains=searchTerm)|Q(content__icontains=searchTerm))
     context = {'articles':articles, 'searchTerm':searchTerm}
     return render(request, 'article/articleSearch.html', context)
+
 def commentCreate(request, articleId):
     '''
     Create a new comment

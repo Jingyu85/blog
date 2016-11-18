@@ -10,28 +10,25 @@
 <body>
 {% include 'main/menu.html' %}
 <h2>歡迎來到我的部落格</h2>
+{% include 'main/messages.html' %}
 <br>
-<a class="btn" href="{% url 'article:articleCreate' %}">新增文章</a>
-<br>
-<br>
-<form action="{% url 'article:articleSearch' %}">
+<form class="inline" action="{% url 'article:articleSearch' %}">
   <input type="text" name="searchTerm">
   <input type="submit" value="查詢">
-</form> 
+</form>
+<a class="inline" href="{% url 'article:articleCreate' %}">新增文章</a>
 <br>
 {% for items in itemsList %}
   {% for item in items %}
     {% if forloop.first %}
-      <h2>
-		  <a href="{% url 'article:articleRead' item.id %}">{{ item.title }}</a>
-		  <form method="post" action="{% url 'article:articleDelete' item.id %}">
-			  {% csrf_token %}
-			  <input type="submit" value="刪除文章">
-		  </form>
-	  </h2>
+      <h3 class="inline"><a href="{% url 'article:articleRead' item.id %}">{{ item.title }}</a> </h3>
+      <form class="inline" method="post" action="{% url 'article:articleDelete' item.id %}">
+        {% csrf_token %}
+		<input type="submit" value="刪除">
+      </form>
       <p>發表時間:{{ item.pubDateTime|date:'Y-m-d H:i' }}</p>
       <div class=articleContent>{{ item.content|linebreaks|truncatewords_html:6 }}</div>
-      <p>讚:{{ item.likes }}</p>
+      <p>按讚:{{ item.likes }}</p>
     {% else %}
       <p>
         <span class=comment>{{ item.content }}</span><br>
