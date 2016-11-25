@@ -16,7 +16,7 @@
   <input type="text" name="searchTerm">
   <input type="submit" value="查詢">
 </form>
-<a class="inline" href="{% url 'article:articleCreate' %}">新增文章</a>
+<a class="btn inline" href="{% url 'article:articleCreate' %}">新增文章</a>
 <br>
 {% for items in itemsList %}
   {% for item in items %}
