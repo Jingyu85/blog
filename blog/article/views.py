@@ -116,3 +116,8 @@ def commentCreate(request, articleId):
     if content:
         Comment.objects.create(article=articleToComment, content=content)
     return redirect('article:articleRead', articleId=articleId)  
+def addLike(request, articleId):
+    articleToLike = get_object_or_404(Article, id=articleId)
+    articleToLike.likes += 1
+    articleToLike.save()
+    return redirect('article:articleRead', articleId=articleId)   

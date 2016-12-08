@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^articleDelete/(?P<articleId>[0-9]+)/$', views.articleDelete, name='articleDelete'),
     url(r'^articleSearch/$', views.articleSearch, name='articleSearch'),
     url(r'^commentCreate/(?P<articleId>[0-9]+)/$', views.commentCreate, name='commentCreate'),
+    url(r'^addLike/(?P<articleId>[0-9]+)/$', views.addLike, name='addLike'),
 ]
