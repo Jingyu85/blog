@@ -6,16 +6,13 @@
 <meta charset="utf-8">
 <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
 <link rel="stylesheet" href="{% static 'article/css/article.css' %}">
+<link rel="icon" href="{% static 'main/img/favicon.ico' %}" type="image/x-icon">
 </head>
 <body>
 {% include 'main/menu.html' %}
 <h2>歡迎來到我的部落格</h2>
 {% include 'main/messages.html' %}
-<br>
-<form class="inline" action="{% url 'article:articleSearch' %}">
-  <input type="text" name="searchTerm">
-  <input type="submit" value="查詢">
-</form>
+{% include 'article/searchForm.html' %}
 <a class="btn inline" href="{% url 'article:articleCreate' %}">新增文章</a>
 <br>
 {% for items in itemsList %}

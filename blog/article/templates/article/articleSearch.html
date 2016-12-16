@@ -5,16 +5,13 @@
 <title>部落格</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+<link rel="icon" href="{% static 'main/img/favicon.ico' %}" type="image/x-icon">
 </head>
 <body>
 {% include 'main/menu.html' %}
 <h1>歡迎來到我的部落格</h1>
-<br>
-<form action="{% url 'article:articleSearch' %}">
-  <input type="text" name="searchTerm" {% if searchTerm %}value="{{ searchTerm }}"{% endif %}>
-  <input type="submit" value="查詢">
-</form>
-<br>
+{% include 'article/searchForm.html' %}
+<br><br><hr>
 <h4>搜尋結果:</h4>
 <table class="table table-striped table-hover">
   <tr><th>標題</th><th>發表時間</th></tr>
