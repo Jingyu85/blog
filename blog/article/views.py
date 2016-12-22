@@ -120,4 +120,17 @@ def addLike(request, articleId):
     articleToLike = get_object_or_404(Article, id=articleId)
     articleToLike.likes += 1
     articleToLike.save()
-    return redirect('article:articleRead', articleId=articleId)   
+    return redirect('article:articleRead', articleId=articleId)
+
+def commentDelete(request, commentId):
+    if request.method=='GET':
+        return articleRead(request)
+    # POST
+    commentToDelete = get_object_or_404(Comment, id=commentId)
+    commentToDelete.delete()
+    messages.success(request, '留言已刪除')
+    return redirect('article:articleRead', articleId=commentToDelete.article.id) 
+
+def commentUpdate(request, articleId):
+    pass
+
