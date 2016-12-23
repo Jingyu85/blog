@@ -1,5 +1,5 @@
 """
-WSGI config for bolg project.
+WSGI config for blog project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,11 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "bolg.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "blog.settings")
 
-application = get_wsgi_application()
+
+if 'DYNO' in os.environ:    # Running on Heroku
+    from dj_static import Cling
+    application = Cling(get_wsgi_application())
+else:
+    application = get_wsgi_application()
