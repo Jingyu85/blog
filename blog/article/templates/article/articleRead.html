@@ -1,16 +1,10 @@
-<!doctype html>
+{% extends 'main/base.html' %}
 {% load staticfiles %}
-<html>
-<head>
-<title>部落格</title>
-<meta charset="utf-8">
-<link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+{% block css %}
 <link rel="stylesheet" href="{% static 'article/css/article.css' %}">
-<link rel="icon" href="{% static 'main/img/favicon.ico' %}" type="image/x-icon">
-</head>
-<body>
-{% include 'main/menu.html' %}
-{% include 'main/messages.html' %}
+{% endblock %}
+{% block heading %}閱讀文章{% endblock %}
+{% block content %}
 <h3 class="inline">{{ article.title }}</h3>
 <a class="btn inline" href="{% url 'article:articleUpdate' article.id %}">修改</a>
 <p>發表時間:{{ article.pubDateTime|date:'Y-m-d H:i' }}</p>
@@ -43,5 +37,4 @@
     </form>
   </p>
 {% endfor %}
-</body>
-</html>
+{% endblock %}

@@ -1,26 +1,19 @@
-<!doctype html>
-{% load staticfiles %}
-<html>
-<head>
-<title>部落格</title>
-<meta charset="utf-8">
-<link rel="stylesheet" href="{% static 'main/css/main.css' %}">
-<link rel="icon" href="{% static 'main/img/favicon.ico' %}" type="image/x-icon">
-</head>
-<body>
-{% include 'main/menu.html' %}
-<h1>歡迎來到我的部落格</h1>
+{% extends 'main/base.html' %}
+{% block heading %}查詢{% endblock %}
+{% block content %}
 {% include 'article/searchForm.html' %}
 <br><br><hr>
-<h4>搜尋結果:</h4>
-<table class="table table-striped table-hover">
-  <tr><th>標題</th><th>發表時間</th></tr>
-  {% for article in articles %}
-  <tr>
-    <td><a href="{% url 'article:articleRead' article.id %}">{{ article.title }}</a></td>
-    <td>{{ article.pubDateTime|date:'Y-m-d H:i' }}</td>
-  </tr>
-  {% endfor %}
-</table>
-</body>
-</html>
+{% if not articles %}
+  <p>查無資料</p>
+{% else %}
+  <table class="table table-striped table-hover">
+    <tr><th>標題</th><th>發表時間</th></tr>
+    {% for article in articles %}
+    <tr>
+      <td><a href="{% url 'article:articleRead' article.id %}">{{ article.title }}</a></td>
+      <td>{{ article.pubDateTime|date:'Y-m-d H:i' }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endif %}
+{% endblock %}
