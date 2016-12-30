@@ -1,5 +1,6 @@
 from populate import base
 from article.models import Article, Comment
+from django.contrib.auth.models import User
 import random
 
 
@@ -17,7 +18,7 @@ def populate():
         article.likes = random.randint(0,20)
         article.save()
         for comment in comments:
-            Comment.objects.create(article=article, content=comment)
+            Comment.objects.create(article=article, content=comment, User=User)
     print('done')
 
 

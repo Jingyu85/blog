@@ -6,20 +6,23 @@
 {% block heading %}閱讀文章{% endblock %}
 {% block content %}
 <h3 class="inline">{{ article.title }}</h3>
+{% if user.is_superuser %}
 <a class="btn inline" href="{% url 'article:articleUpdate' article.id %}">修改</a>
+{% endif %}
 <p>發表時間:{{ article.pubDateTime|date:'Y-m-d H:i' }}</p>
 <div class=articleContent>{{ article.content|linebreaks }}</div>
 <p>按讚:{{ article.likes }}</p>
 <a class="btn inline" href="{% url 'article:addLike' article.id %}">讚</a>
-
+{% if user.is_authenticated %}
 <form method=post action="{% url 'article:commentCreate' article.id %}">
   {% csrf_token %}
   留言:<input type=text name=comment>
   <input type=submit value=送出>
 </form>
-
+{% endif %}
 {% for comment in comments %}
   <p>
+    <span class=commentAuthor>{{ comment.user.profile.fullName }}</span>
     <span class=comment>{{ comment.content }}</span><br>
     <span class=commentTime>{{ comment.pubDateTime|date:'Y-m-d H:i'}}</span>
     {% if commentId and commentId == comment.id %}
